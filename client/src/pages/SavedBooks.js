@@ -23,13 +23,14 @@ const SavedBooks = () => {
 
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
     if (!token) {
       return false;
     }
 
     try {
-      const [removeBook, {error }] = useMutation(REMOVE_BOOK);
+      
 
       if (!response.ok) {
         throw new Error('something went wrong!');
