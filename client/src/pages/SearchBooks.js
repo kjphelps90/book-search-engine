@@ -4,6 +4,7 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import Auth from '../utils/auth';
 import { saveBook, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+import { SAVE_BOOK } from '../utils/mutations'
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -65,8 +66,8 @@ const SearchBooks = () => {
     }
     
     try {
-      const response = await saveBook(bookToSave, token);
-      
+      const [saveBook, { error }] = useMutation(SAVE_BOOK);
+
 
       if (!response.ok) {
         throw new Error('something went wrong!');
