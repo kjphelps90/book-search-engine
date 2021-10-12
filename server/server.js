@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bookuser", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/booksearch", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
