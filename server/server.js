@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
+const mongoose = require("mongoose");
 
 const db = require('./config/connection');
 const routes = require('./routes');
@@ -24,6 +25,13 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bookuser", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
 app.use(routes);
 
